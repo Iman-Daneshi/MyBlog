@@ -27,7 +27,7 @@
 				<div class="single-post row">
 					<div class="col-lg-12">
 						<div class="feature-img">
-							<img class="img-fluid" src="{% static 'img/blog/feature-img1.jpg' %}" alt="">
+							<img class="img-fluid" src="{{ post.image.url }}" alt="">
 						</div>									
 					</div>
 					<div class="col-lg-3  col-md-3 meta-details">
@@ -63,7 +63,7 @@
 						<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
 							<div class="thumb">
 								{% if post.get_previous_by_created_date %}
-								<a href="#"><img class="img-fluid" src="{{ post.get_previous_by_created_date.image.url }}" alt=""></a>
+								<a href="{% url 'blog:single_post' post.get_previous_by_created_date.id %}"><img class="img-fluid" src="{{ post.get_previous_by_created_date.image.url }}" alt=""></a>
 							</div>
 							<div class="arrow">
 								<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
@@ -71,7 +71,7 @@
 							<div class="detials">
 								<p>Prev Post</p>
 								
-								<a href="#"><h4>{{ post.get_previous_by_created_date.title }}</h4></a>
+								<a href="{% url 'blog:single_post' post.get_previous_by_created_date.id %}"><h4>{{ post.get_previous_by_created_date.title }}</h4></a>
 								{% endif %}
 							</div>
 						</div>
@@ -79,13 +79,13 @@
 							<div class="detials">
 								{% if post.get_next_by_created_date %}
 								<p>Next Post</p>
-								<a href="#"><h4>{{ post.get_next_by_created_date.title }}</h4></a>
+								<a href="{% url 'blog:single_post' post.get_next_by_created_date.id %}"><h4>{{ post.get_next_by_created_date.title }}</h4></a>
 							</div>
 							<div class="arrow">
 								<a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
 							</div>
 							<div class="thumb">
-								<a href="#"><img class="img-fluid" src="{{ post.get_next_by_created_date.image.url }}" alt=""></a>
+								<a href="{% url 'blog:single_post' post.get_next_by_created_date.id %}"><img class="img-fluid" src="{{ post.get_next_by_created_date.image.url }}" alt=""></a>
 								{% endif %}
 							</div>										
 						</div>									
