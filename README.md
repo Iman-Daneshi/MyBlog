@@ -1,2 +1,2 @@
 # MyBlog
- TaskOne
+ A simple blog app using Django framework
