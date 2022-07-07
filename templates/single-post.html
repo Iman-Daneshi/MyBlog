@@ -95,25 +95,31 @@
 					{% if reviews %}
 					<h4>{{reviews|length}}{% if reviews|length > 1 %}comments{% else %}comment{% endif %}</h4>
 					<div class="comment-list">
+						{% for review in reviews %}
 						<div class="single-comment justify-content-between d-flex">
 							<div class="user justify-content-between d-flex">
-								{% comment %} <div class="thumb">
-									<img src="{% static 'img/blog/c1.jpg' %}" alt="">
-								</div> {% endcomment %}
+								<div class="thumb">				
+									{% if review.value == 'up' %}
+									<img src="{% static 'img/blog/like.jpg' %}" alt="">
+									{% else %}
+									<img src="{% static 'img/blog/dislike.jpg' %}" alt="">
+									{% endif %}
+								</div> 
 								<div class="desc">
-									{% for review in reviews %}
+									
 									<h5><a href="#">{{review.value}}</a></h5>
 									<p class="date">{{review.created_date|naturaltime}} </p>
 									<p class="comment">
 										{{ review.body }}
 									</p>
-									{% endfor %}
+									
 								</div>
 							</div>
 							{% comment %} <div class="reply-btn">
 									<a href="" class="btn-reply text-uppercase">reply</a> 
 							</div> {% endcomment %}
 						</div>
+						{% endfor %}
 					</div>
 					{% endif %}	                                          				
 				</div>
