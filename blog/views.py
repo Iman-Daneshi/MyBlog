@@ -1,8 +1,6 @@
-from multiprocessing import context
-import re
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from .models import Post
+from .models import Post, Tag, Review
 
 # Create your views here.
 
@@ -20,7 +18,11 @@ def index_view(request):
 def single_post(request, id):
     posts = Post.objects.filter(status=1)
     post = get_object_or_404(posts, id=id)
-    context = {'post': post}
+    reviews = Review.objects.filter(post=post.id)
+    context = {
+        'post': post,
+        'reviews': reviews,
+        }
     return render(request,'single-post.html', context)
     
 
